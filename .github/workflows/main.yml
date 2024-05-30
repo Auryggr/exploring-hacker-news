@@ -58,6 +58,6 @@ jobs:
 
       - name: Run Jupyter Notebook
         run: |
-          jupyter nbconvert --to notebook --execute ycombinator_news_.ipynb
+          jupyter nbconvert --to notebook --execute news_trend_visualizations.ipynb
 
      
