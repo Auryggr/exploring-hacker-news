@@ -30,7 +30,7 @@ jobs:
           pip install webdriver-manager
           pip install requests
           pip install lxml
-          pip install nbconvert          
+          pip install notebook          
 
       - name: Install Chrome
         run: |
