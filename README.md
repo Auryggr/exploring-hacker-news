@@ -1,4 +1,4 @@
-*What's new on 'Hacker News'?*
+**What's new on 'Hacker News'?**
 
 Hey There!
 
