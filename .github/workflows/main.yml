@@ -1,0 +1,56 @@
+name: Run Python script every 2 hours and after deployment
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'
+  push:
+    branches:
+      - main
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4
+          pip install google-auth
+          pip install google-api-python-client
+          pip install selenium
+          pip install webdriver-manager
+          pip install requests
+          pip install lxml
+
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Create key.json file
+        run: |
+          echo '{
+            "type": "service_account",
+            "project_id": "python-sheets-423418",
+            "private_key_id": "${{ secrets.PRIVATE_KEY_ID }}",
+            "private_key": "${{ secrets.PRIVATE_KEY }}",
+            "client_email": "${{ secrets.CLIENT_EMAIL }}",
+            "client_id": "${{ secrets.CLIENT_ID }}",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token",
+            "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+            "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/${{ secrets.CLIENT_EMAIL }}",
+            "universe_domain": "googleapis.com"
+          }' > key.json
+
+      - name: Run Python script
+        run: python ycombinator_news_.py
