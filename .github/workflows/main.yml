@@ -30,6 +30,7 @@ jobs:
           pip install webdriver-manager
           pip install requests
           pip install lxml
+          pip install nbconvert          
 
       - name: Install Chrome
         run: |
@@ -54,3 +55,9 @@ jobs:
 
       - name: Run Python script
         run: python ycombinator_news_.py
+
+      - name: Run Jupyter Notebook
+        run: |
+          jupyter nbconvert --to notebook --execute ycombinator_news_.ipynb
+
+     
