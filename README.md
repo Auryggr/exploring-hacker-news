@@ -12,7 +12,7 @@ Hey There!
 
 > It generates a CSV file with the data extracted when you run it locally **
 
-> It's scheduled to run with GitHub actions every 2 hours
+> It's scheduled to run with GitHub actions every 12 hours
 
 *Is that not enough?*
 

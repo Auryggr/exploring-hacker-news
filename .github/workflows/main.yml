@@ -2,7 +2,7 @@ name: Run Python script every 2 hours and after deployment
 
 on:
   schedule:
-    - cron: '0 */2 * * *'
+    - cron: '0 */12 * * *'
   push:
     branches:
       - main
